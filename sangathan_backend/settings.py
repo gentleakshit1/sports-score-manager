@@ -25,8 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-_)1wuhu_*&#33$nxn*kf3oyda53_)hwf7%8osw4yok1ix_d0f='
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'b0223acde17e9174db3a2800b7081359')
-DEBUG = os.environ.get('DEBUG', '') == 'True'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -39,11 +39,11 @@ CSRF_COOKIE_SECURE = True
 
 
 ALLOWED_HOSTS = [
-    'https://amity-sangathan.onrender.com/',  # ✅ your real domain
-    'www.amity-sangathan.onrender.com',
-    'localhost',  # optional for local testing
+    'amity-sangathan.onrender.com',
+    'localhost',
     '127.0.0.1',
 ]
+
 
 
 
