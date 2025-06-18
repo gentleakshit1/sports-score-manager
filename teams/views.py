@@ -25,7 +25,7 @@ def team_add_players(request, team_id):
                 player = form.save(commit=False)
                 player.team = team
                 player.save()
-            return redirect('match_list')  # or scoreboard
+            return redirect('registration_success')  # or scoreboard
     else:
         formset = PlayerFormSet(queryset=Player.objects.none())
 
@@ -33,3 +33,5 @@ def team_add_players(request, team_id):
         'team': team,
         'formset': formset
     })
+def registration_success(request):
+    return render(request, 'teams/registration_success.html')

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1 class="display-4 text-success animate__animated animate__fadeInDown">🎉 Hooray!</h1>
+    <p class="lead mt-4 animate__animated animate__fadeInUp">
+        Thank you for registering your team for Sangathan Sports Fest.
+    </p>
+    <p class="animate__animated animate__fadeInUp animate__delay-1s">
+        Let's see how many runs you score on the ground. We hope you practice before playing!
+    </p>
+    <a href="{% url 'match_list' %}" class="btn btn-outline-warning mt-4 animate__animated animate__fadeInUp animate__delay-2s">View Matches</a>
+</div>
+{% endblock %}

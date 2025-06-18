@@ -1,12 +1,48 @@
-<h2>Add Players for {{ team.name }}</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ formset.management_form }}
-  {% for form in formset %}
-    <fieldset style="margin-bottom: 20px; padding: 10px; border: 1px solid #ddd;">
-      <legend>Player {{ forloop.counter }}</legend>
-      {{ form.as_p }}
-    </fieldset>
-  {% endfor %}
-  <button type="submit">Save Team</button>
-</form>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-wrapper animate__animated animate__fadeInUp">
+    <h4 class="mb-4 text-center">Add Players for {{ team.name }}</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+        <fieldset class="mb-4 p-3 rounded border border-secondary">
+            <legend class="fs-5">Player {{ forloop.counter }}</legend>
+            {{ form.as_p }}
+        </fieldset>
+        {% endfor %}
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success">Save Team</button>
+        </div>
+    </form>
+</div>
+
+<!-- Optional: Custom style if any fields misalign -->
+<style>
+    .form-wrapper p {
+        margin-bottom: 1rem;
+    }
+
+    .form-wrapper label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    .form-wrapper input,
+    .form-wrapper select {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-wrapper input:focus,
+    .form-wrapper select:focus {
+        outline: none;
+        box-shadow: 0 0 5px var(--primary-bg);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg rounded-4 animate__animated animate__fadeInDown" style="background-color: var(--bs-body-bg); color: var(--bs-body-color);">
+        <div class="card-body text-center">
+          <i class="fas fa-check-circle fa-4x text-success mb-4 animate__animated animate__bounceIn"></i>
+          <h2 class="card-title mb-3">Thank You!</h2>
+          <p class="lead mb-4">Your query has been successfully submitted. <br> We appreciate you reaching out to us.</p>
+          <a href="{% url 'match_list' %}" class="btn btn-primary btn-lg animate__animated animate__fadeInUp">
+            <i class="fas fa-arrow-left me-2"></i> Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

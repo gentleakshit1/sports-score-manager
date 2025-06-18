@@ -1,6 +1,42 @@
-<h2>Register Your Team</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Next: Add Players</button>
-</form>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-wrapper animate__animated animate__fadeInUp">
+    <h4 class="mb-4 text-center">Register Your Team</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Next: Add Players</button>
+        </div>
+    </form>
+</div>
+
+<!-- Optional: Auto-style Django form fields -->
+<style>
+    .form-wrapper p {
+        margin-bottom: 1rem;
+    }
+
+    .form-wrapper label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    .form-wrapper input,
+    .form-wrapper select {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-wrapper input:focus,
+    .form-wrapper select:focus {
+        outline: none;
+        box-shadow: 0 0 5px var(--primary-bg);
+    }
+</style>
+{% endblock %}
