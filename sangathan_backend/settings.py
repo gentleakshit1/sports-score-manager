@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-Db0223acde17e9174db3a2800b7081359'  # Update befor
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Set to False only when you're ready for production
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost","https://amity-sangathan.onrender.com","www.amity-sangathan.onrender.com"]  # Add domain/IPs here for prod
+ALLOWED_HOSTS = ["127.0.0.1", "localhost","https://amity-sangathan.onrender.com","www.amity-sangathan.onrender.com","amity-sangathan.onrender.com"]  # Add domain/IPs here for prod
 
 # Application definition
 INSTALLED_APPS = [
