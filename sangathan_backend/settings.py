@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-_)1wuhu_*&#33$nxn*kf3oyda53_)hwf7%8osw4yok1ix_d0f=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'sports-score-manager.onrender.com',  # ✅ your real domain
+    'www.sports-score-manager.onrender.com',
+    'localhost',  # optional for local testing
+    '127.0.0.1',
+]
+
 
 
 # Application definition
