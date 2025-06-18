@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-_)1wuhu_*&#33$nxn*kf3oyda53_)hwf7%8osw4yok1ix_d0f='
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'b0223acde17e9174db3a2800b7081359')
+SECRET_KEY = os.environ.get("Db0223acde17e9174db3a2800b7081359")
 
 
 
@@ -38,11 +38,8 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
 
-ALLOWED_HOSTS = [
-    'amity-sangathan.onrender.com',
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = ['amity-sangathan.onrender.com']
+
 
 
 
@@ -98,7 +95,11 @@ WSGI_APPLICATION = 'sangathan_backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('postgresql://sangathan_db_user:pdK7nnunSYH1vUkwVW7nohOP8I5taB7W@dpg-d19ejtvfte5s73cc3qk0-a/sangathan_db'))
+    'default': dj_database_url.config(
+        default='postgresql://sangathan_db_user:pdK7nnunSYH1vUkwVW7nohOP8I5taB7W@dpg-d19ejtvfte5s73cc3qk0-a/sangathan_db',
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
