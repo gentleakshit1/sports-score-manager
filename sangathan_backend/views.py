@@ -1,6 +1,8 @@
 # I have created this
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import HttpResponse
+from django.core.management import call_command
 
 def contact_view(request):
     if request.method == "POST":
@@ -14,3 +16,8 @@ def contact_view(request):
 
 def developer_view(request):
     return render(request, "developer.html")
+
+
+def run_migrate(request):
+    call_command('migrate')
+    return HttpResponse("Migrations completed.")

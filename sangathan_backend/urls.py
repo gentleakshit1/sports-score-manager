@@ -19,6 +19,7 @@ from django.urls import path,include
 from matches.views import match_list, match_detail, match_scoreboard
 from teams.views import team_register_basic, team_add_players, registration_success
 from . import views
+from .views import run_migrate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +36,7 @@ urlpatterns = [
     path('register/success/', registration_success, name='registration_success'),
     path("contact/", include("contact.urls")),
     path("developer/", views.developer_view, name="developer"),
-    
+    path('run-migrate/', run_migrate),
 
     
 
