@@ -22,7 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_)1wuhu_*&#33$nxn*kf3oyda53_)hwf7%8osw4yok1ix_d0f='
+# SECRET_KEY = 'django-insecure-_)1wuhu_*&#33$nxn*kf3oyda53_)hwf7%8osw4yok1ix_d0f='
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'b0223acde17e9174db3a2800b7081359')
+DEBUG = os.environ.get('DEBUG', '') == 'True'
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -35,8 +39,8 @@ CSRF_COOKIE_SECURE = True
 
 
 ALLOWED_HOSTS = [
-    'sports-score-manager.onrender.com',  # ✅ your real domain
-    'www.sports-score-manager.onrender.com',
+    'https://amity-sangathan.onrender.com/',  # ✅ your real domain
+    'www.amity-sangathan.onrender.com',
     'localhost',  # optional for local testing
     '127.0.0.1',
 ]
@@ -66,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'sangathan_backend.urls'
@@ -92,10 +98,9 @@ WSGI_APPLICATION = 'sangathan_backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': dj_database_url.config(default=os.environ.get('postgresql://sangathan_db_user:pdK7nnunSYH1vUkwVW7nohOP8I5taB7W@dpg-d19ejtvfte5s73cc3qk0-a/sangathan_db'))
 }
+
 
 
 
@@ -149,3 +154,5 @@ STATICFILES_DIRS = [ BASE_DIR / 'static' ]  # Only if you're storing static in p
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
