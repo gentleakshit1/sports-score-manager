@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">Upcoming & Live Matches</h2>
+
+{% for match in matches %}
+<div class="card mb-3 shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">{{ match.team1.name }} vs {{ match.team2.name }}</h5>
+        <p class="card-text">
+            <strong>📍 {{ match.venue }}</strong><br>
+            🕒 {{ match.start_time|date:"M d, H:i" }}<br>
+            Status: <span class="badge bg-secondary">{{ match.get_status_display }}</span>
+        </p>
+        <a href="{% url 'match_detail' match.id %}" class="btn btn-outline-primary">View Scorecard</a>
+    </div>
+</div>
+{% empty %}
+<p>No upcoming or live matches.</p>
+{% endfor %}
+
+{% endblock %}

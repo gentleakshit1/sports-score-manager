@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>{{ match.team1.name }} vs {{ match.team2.name }}</h2>
+
+<p>
+    <strong>📍 Venue:</strong> {{ match.venue }}<br>
+    <strong>🕒 Time:</strong> {{ match.start_time|date:"M d, H:i" }}<br>
+    <strong>Status:</strong> <span class="badge bg-secondary">{{ match.get_status_display }}</span><br>
+    <strong>Result:</strong> {{ match.result|default:"Not declared yet" }}
+</p>
+
+<hr>
+
+<!-- ✅ LIVE SCOREBOARD SECTION -->
+<div
+    id="live-score"
+    hx-get="{% url 'match_scoreboard_partial' match.id %}"
+    hx-trigger="every 5s"
+    hx-swap="outerHTML"
+>
+    {% include "matches/components/scoreboard_content.html" %}
+</div>
+
+<a href="{% url 'match_list' %}" class="btn btn-outline-secondary mt-3">⬅ Back to Match List</a>
+
+{% endblock %}

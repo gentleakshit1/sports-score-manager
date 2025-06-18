@@ -1,0 +1,39 @@
+{% for inning in innings %}
+    <h4>{{ inning.team.name }} Innings</h4>
+    <p><strong>{{ inning.runs }}/{{ inning.wickets }}</strong> in {{ inning.overs_played }} overs</p>
+
+    <table class="table table-striped table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Runs</th>
+                <th>Balls</th>
+                <th>4s</th>
+                <th>6s</th>
+                <th>Strike Rate</th>
+                <th>Wickets</th>
+                <th>Overs Bowled</th>
+                <th>Runs Conceded</th>
+                <th>Economy</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for p in players_stats %}
+            {% if p.player.team.id == inning.team.id %}
+            <tr>
+                <td>{{ p.player.name }}</td>
+                <td>{{ p.runs_scored }}</td>
+                <td>{{ p.balls_faced }}</td>
+                <td>{{ p.fours }}</td>
+                <td>{{ p.sixes }}</td>
+                <td>{{ p.strike_rate|floatformat:2 }}</td>
+                <td>{{ p.wickets_taken }}</td>
+                <td>{{ p.overs_bowled_display }}</td>
+                <td>{{ p.runs_conceded }}</td>
+                <td>{{ p.economy_rate|floatformat:2 }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
