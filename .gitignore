@@ -1,0 +1,35 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Django-specific
+*.sqlite3
+db.sqlite3
+*.log
+
+# Django secret key or local settings (optional but recommended)
+**/settings.py
+**/local_settings.py
+
+# Media and static (if not managed by git)
+media/
+staticfiles/
+
+# VS Code / PyCharm settings
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# dotenv
+.env
