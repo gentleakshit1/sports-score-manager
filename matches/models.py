@@ -1,5 +1,5 @@
 from django.db import models
-from teams.models import Team
+from participants.models import Team
 
 class Match(models.Model):
     MATCH_STATUS = [
@@ -15,7 +15,7 @@ class Match(models.Model):
     start_time = models.DateTimeField()
     status = models.CharField(max_length=10, choices=MATCH_STATUS, default='upcoming')
 
-    toss_winner = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, related_name='won_toss_matches')
+    toss_winner = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, blank=True, related_name='won_toss_matches')
     toss_decision = models.CharField(max_length=10, choices=[('bat', 'Bat'), ('bowl', 'Bowl')], null=True, blank=True)
 
     result = models.CharField(max_length=255, blank=True, null=True)  # e.g., "CSE Warriors won by 10 runs"

@@ -1,48 +1,41 @@
-"""
-URL configuration for sangathan_backend project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from matches.views import match_list, match_detail, match_scoreboard
-from teams.views import team_register_basic, team_add_players, registration_success
+from participants.views import team_register_basic, team_add_players, registration_success
 from . import views
-from .views import run_migrate
+from .views import run_migrate, custom_login_redirect
+from accounts.views import view_profile
+from django.shortcuts import redirect
+from accounts.views import profile_check, complete_profile
+
+# 👇 Optional: redirect local login path to Google login
+def login_redirect_to_google(request):
+    return redirect('/accounts/google/login/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # 🏏 Match listing and details
     path('', match_list, name='match_list'),
     path('match/<int:match_id>/', match_detail, name='match_detail'),
-
-    # 🏏 Cricheroes-style registration
-    path('register/', team_register_basic, name='team_register'),
-    path('register/<int:team_id>/players/', team_add_players, name='team_add_players'),
-
-    #live scoreboard
     path('match/<int:match_id>/scoreboard/', match_detail, name='match_scoreboard_full'),
     path('match/<int:match_id>/scoreboard/live/', match_scoreboard, name='match_scoreboard_partial'),
+
+    # 📝 Team registration
+    path('register/', team_register_basic, name='team_register'),
+    path('register/<int:team_id>/players/', team_add_players, name='team_add_players'),
     path('register/success/', registration_success, name='registration_success'),
-    path("contact/", include("contact.urls")),
-    path("developer/", views.developer_view, name="developer"),
+
+    # 📬 Contact & misc
+    path('contact/', include('contact.urls')),
+    path('developer/', views.developer_view, name='developer'),
     path('run-migrate/', run_migrate),
 
-    
-
-    # path('register/', views.team_register_basic, name='team_register'),  # Removed duplicate, already defined above
-    # path('register/<int:team_id>/players/', views.team_add_players, name='team_add_players'),  # Removed duplicate
-    # path('register/success/', views.registration_success, name='registration_success'),  # Uncomment and import if needed
-
+    # 🔐 Auth / login
+    path('login/', custom_login_redirect),  # Your own handler
+    path('accounts/login/', login_redirect_to_google),  # Optional override
+    path('accounts/', include('allauth.urls')),  # Allauth handles login, logout, etc.
+    path('profile-check/', profile_check, name='profile-check'),
+    path('complete_profile/', complete_profile, name='complete_profile'),
+    path('profile/', view_profile, name='view_profile'),
 ]
-

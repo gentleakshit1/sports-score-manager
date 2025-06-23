@@ -1,6 +1,6 @@
 from .models import PlayerPerformance, TeamInning
 from matches.models import Match
-from teams.models import Player
+from participants.models import Player
 
 def update_score(match, batsman, bowler, runs, ball_type, is_wicket):
     # ✅ Update TeamInning

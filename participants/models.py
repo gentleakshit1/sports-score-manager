@@ -32,6 +32,8 @@ class Player(models.Model):
     batting_style = models.CharField(max_length=50, blank=True, null=True)  # Right-hand, Left-hand
     bowling_style = models.CharField(max_length=50, blank=True, null=True)  # Off-spin, Fast
     jersey_number = models.IntegerField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    whatsapp_number = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
         return f"{self.name} ({self.team.name})"

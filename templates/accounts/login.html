@@ -1,0 +1,94 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .login-card h1 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.2rem;
+        }
+
+        .login-card p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .login-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #4285f4;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #3367d6;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive for smaller devices */
+        @media (max-width: 500px) {
+            .login-card {
+                padding: 1.5rem;
+            }
+
+            .login-card h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h1>Welcome to Sangathan</h1>
+        <p>Sign in securely using your Google account to continue.</p>
+
+        <a href="{% provider_login_url 'google' method='oauth2' %}" class="login-btn">
+            Sign in with Google
+        </a>
+    </div>
+
+</body>
+</html>

@@ -21,3 +21,6 @@ def developer_view(request):
 def run_migrate(request):
     call_command('migrate')
     return HttpResponse("Migrations completed.")
+
+def custom_login_redirect(request):
+    return redirect('/accounts/login/')

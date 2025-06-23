@@ -1,6 +1,6 @@
 from django.db import models
 from matches.models import Match
-from teams.models import Team, Player
+from participants.models import Team, Player
 
 class TeamInning(models.Model):
     match = models.ForeignKey(Match, on_delete=models.CASCADE)
